@@ -10,10 +10,10 @@ class ShopProduct
 
     public function __construct($title, $firstName, $mainName, $price)
     {
-        $this->title              = $title;
+        $this->title = $title;
         $this->produncerFirstName = $firstName;
-        $this->produncerMainName  = $mainName;
-        $this->price              = $price;
+        $this->produncerMainName = $mainName;
+        $this->price = $price;
     }
 
     public function getProducerFirstName()
@@ -78,10 +78,6 @@ class CdProduct extends ShopProduct
 class BookProduct extends ShopProduct
 {
     public $numPages;
-    // public $title;
-    // public $produncerMainName;
-    // public $produncerFirstName;
-    // public $price;
 
     public function __construct($title, $firstName, $mainName, $price, $numPages)
     {
@@ -102,10 +98,6 @@ class BookProduct extends ShopProduct
     {
         return $this->price;
     }
-    // public function getProducer()
-    // {
-    //     return "{$this->produncerFirstName}" . " {$this->produncerMainName}";
-    // }
 }
 
 class ShopProductWriter
