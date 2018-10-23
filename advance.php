@@ -12,7 +12,12 @@ class StaticExample
 // print(StaticExample::$aNum);
 // StaticExample::sayHello();
 
-class ShopProduct
+interface Chargeable
+{
+    public function getPrice();
+}
+
+class ShopProduct implements Chargeable
 {
     private $id = 0;
     private $title;
@@ -27,6 +32,18 @@ class ShopProduct
         $this->produncerFirstName = $firstName;
         $this->produncerMainName  = $mainName;
         $this->price              = $price;
+    }
+
+    public function cdInfo(CdProduct $prod){
+        // ...
+    }
+
+    public function addProduct(ShopProduct $prod){
+        // ..
+    }
+
+    public function addChargeableItem(Chargeable $item){
+        // ..
     }
 
     public static function getInstance($id, PDO $pdo)
@@ -105,8 +122,9 @@ class ShopProduct
     {
         return "{$this->produncerFirstName}" . " {$this->produncerMainName}";
     }
-    public function getTitle(){
-    	return $this->title;
+    public function getTitle()
+    {
+        return $this->title;
     }
 }
 
@@ -155,10 +173,7 @@ class BookProduct extends ShopProduct
         return $this->price;
     }
 }
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=test', 'root', 'root');
-    $obj = ShopProduct::getInstance(1, $pdo);
-    echo $obj->getSummaryLine();
-} catch (PDOException $e) {
-    print($e->getMessage);
-}
+
+$pdo = new PDO('mysql:host=localhost;dbname=test', 'root', 'root');
+$obj = ShopProduct::getInstance(1, $pdo);
+echo $obj->getSummaryLine();
